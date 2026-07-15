@@ -1,23 +1,41 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <bits/stdc++.h>
+using namespace std;
 
-typedef struct Node
+class Node
 {
+public:
     int val;
-    struct Node *next;
-} Node;
+    Node *next;
 
-// Create a new node
-Node *createNode(int val)
+    Node(int val)
+    {
+        this->val = val;
+        this->next = NULL;
+    }
+};
+
+// Insert at Head
+void insert_at_head(Node *&head, int val)
 {
-    Node *newNode = (Node *)malloc(sizeof(Node));
-    newNode->val = val;
-    newNode->next = NULL;
+    Node *newNode = new Node(val);
 
-    return newNode;
+    newNode->next = head;
+    head = newNode;
 }
 
+// Print Linked List
+void print_linked_list(Node *head)
+{
+    Node *temp = head;
 
+    while (temp != NULL)
+    {
+        cout << temp->val << " ";
+        temp = temp->next;
+    }
+
+    cout << endl;
+}
 
 int main()
 {
@@ -25,14 +43,15 @@ int main()
 
     int x;
 
-    while (1)
+    // Input until -1
+    while (true)
     {
-        scanf("%d", &x);
+        cin >> x;
 
         if (x == -1)
             break;
 
-        insert_at_head(&head, x);
+        insert_at_head(head, x);
     }
 
     print_linked_list(head);
